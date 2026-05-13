@@ -1,16 +1,10 @@
 from CKY_algorithm import CKY
+from parser import parser
 
-cky = CKY(extensio2=True)
+FILE_PATH = "tests/input.txt"
 
-word = 'aabbc'
+word, grammar, ext1, ext2 = parser(FILE_PATH)
 
-grammar = {
-    'S': [(('X','A'), 0.25), (('A','X'), 0.25), ('a', 0.25), ('b', 0.25)],
-    'A': [(('R','B'), 1.0)],
-    'B': [(('A','X'), 0.5), ('b', 0.25), ('a', 0.25)],
-    'X': [('a', 1.0)],
-    'R': [(('X','B'), 1.0)],
-}
-
+cky = CKY(extensio1=ext1, extensio2=ext2)
 cky.solve(word,grammar)
 
