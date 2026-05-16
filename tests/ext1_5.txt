@@ -1,0 +1,7 @@
+abc
+
+S A
+A a B
+B B C
+B b
+C c

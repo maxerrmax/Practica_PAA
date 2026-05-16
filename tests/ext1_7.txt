@@ -1,0 +1,8 @@
+aaznrn
+
+S a A
+A a B C
+B B C D
+B z
+D r
+C n

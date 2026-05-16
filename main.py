@@ -2,7 +2,7 @@ from CKY_algorithm import CKY
 from parser import parser
 
 # Especificar quin fitxer de prova es vol executar
-RUTA_FITXER = "tests/input.txt"
+RUTA_FITXER = "tests/classic_1.txt"
 
 # Amb la funció parser aconseguim tot el necessari del
 # fitxer donat

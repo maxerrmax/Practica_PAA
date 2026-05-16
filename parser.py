@@ -37,11 +37,17 @@ def parser(ruta_fitxer: str) -> Tuple[str, Dict[str, List[Any]], bool, bool]:
     with open(ruta_fitxer, 'r') as f:
         linies = [linia.rstrip('\n') for linia in f.readlines()]
 
+    if not linies:
+        raise ValueError("El fitxer està completament buit")
+
     # Paraula (primera línia)
     paraula = linies[0].strip()
 
     # Regles (línies no buides després de la primera)
     linies_regles = [l for l in linies[1:] if l.strip()]
+
+    if not linies_regles:
+        raise ValueError("El fitxer no conté cap gramàtica")
 
     # Comprovem si utilitzem l'extensió 2
     extensio2 = any(te_probabilitats(l.split()) for l in linies_regles)
@@ -50,6 +56,8 @@ def parser(ruta_fitxer: str) -> Tuple[str, Dict[str, List[Any]], bool, bool]:
     gramatica = {}
     for linia in linies_regles:
         elements = linia.split()
+        if len(elements) < (3 if extensio2 else 2):
+            raise ValueError(f"Regla incorrecta: {linia}")
         primer_element = elements[0]
         resta_elements = elements[1:]
 

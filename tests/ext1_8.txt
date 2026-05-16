@@ -1,0 +1,9 @@
+azto
+
+S A B C
+A a B
+B D
+C C
+B t
+C o
+D z

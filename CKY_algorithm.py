@@ -91,11 +91,14 @@ class CKY:
                 regles_noves = []
                 for regla in G[A]:
                     simbols, prob = desempaquetar(regla)
-                    if isinstance(simbols, str) and simbols in G: # Comprovem si la regla és unitària i apunta a un no terminal
+                    if isinstance(simbols, str) and simbols in G and simbols != A: # Comprovem si la regla és unitària i apunta a un no terminal
+                                                                                   # També comprovem que la regla no pot apuntar a si mateixa (per exemple: A → A)
                         for regla2 in G[simbols]:
                             simbols2, prob2 = desempaquetar(regla2)
                             nova_prob = prob * prob2 if probabilitats else None
-                            regles_noves.append(empaquetar(simbols2, nova_prob))
+                            nova_regla = empaquetar(simbols2, nova_prob)
+                            if nova_regla not in regles_noves:
+                                regles_noves.append(nova_regla)
                         
                         # Indiquem que hem de tornar a revisar perquè hi ha hagut modificacions
                         modificat = True
@@ -105,13 +108,15 @@ class CKY:
 
         # Regles no binàries:
         num = [0] # Comptador per generar identificadors únics
-        for A in list(G):
+        claus = list(G)
+        for A in claus:
             regles_noves = []
             for regla in G[A]:
                 simbols, prob = desempaquetar(regla)
                 while isinstance(simbols, tuple) and len(simbols) > 2: # Comprovem si la regla segueix tenint més de 2 símbols
                     num[0] += 1
                     X = f"__X{num[0]}"
+                    claus.append(X)
                     G[X] = [empaquetar(simbols[1:], 1.0)] # X agafa tots els símbols menys el primer
                     simbols = (simbols[0], X) # Ara la regla original apunta al primer símbol i a X
                 regles_noves.append(empaquetar(simbols, prob))

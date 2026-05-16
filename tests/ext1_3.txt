@@ -1,0 +1,6 @@
+mnp
+
+S A B C
+A m
+B n
+C p
