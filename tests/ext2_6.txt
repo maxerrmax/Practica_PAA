@@ -1,6 +1,5 @@
-ab
 
-S A B 0.7
-S A B 0.3
+
+S A B 1.0
 A a 1.0
 B b 1.0

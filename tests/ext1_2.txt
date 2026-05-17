@@ -1,4 +1,4 @@
 cd
 
-S c P
-P d
+S c R
+R d

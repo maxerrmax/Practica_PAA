@@ -1,4 +1,5 @@
 ab
 
-S A
+S A B
 A b
+B b

@@ -1,9 +1,6 @@
-abc
+ab
 
-S A B C 1.0
-A A B C 1.0
+S A B 0.7
+S A B 0.3
 A a 1.0
-B B C 1.0
 B b 1.0
-C C 9.0
-C c 7.0
